@@ -6,7 +6,7 @@
 
 // This is the constructor of a class that has been exported.
 // see SerialCommsDll.h for the class definition
-SerialCommPort::SerialCommPort(unsigned int portNum, BaudRate baud)
+SerialCommPort::SerialCommPort(unsigned int portNum, BaudRate baud, DWORD readTimeoutms, DWORD writeTimeoutms)
 {
 	m_termChar='\r';
 	char sPort[20];
@@ -79,14 +79,13 @@ SerialCommPort::SerialCommPort(unsigned int portNum, BaudRate baud)
 	//	the ReadTotalTimeoutConstant and ReadTotalTimeoutMultiplier members, 
 	//	specifies that the read operation is to return immediately with the 
 	//	bytes that have already been received, even if no bytes have been received.
-	DWORD dwTimeOutInMilliSec=35;	//Timeout
     CommTimeouts.ReadIntervalTimeout		=	MAXDWORD;
-    CommTimeouts.ReadTotalTimeoutMultiplier =	dwTimeOutInMilliSec;
+    CommTimeouts.ReadTotalTimeoutMultiplier =	readTimeoutms;
     CommTimeouts.ReadTotalTimeoutConstant	=	0;
 
 	// Write data to buffer immediately, don't wait for data to be moved
 	//   out the communications channel
-	CommTimeouts.WriteTotalTimeoutConstant		=	dwTimeOutInMilliSec;
+	CommTimeouts.WriteTotalTimeoutConstant		=	writeTimeoutms;
 	CommTimeouts.WriteTotalTimeoutMultiplier	=	0;
 
 	// use the new comm timeout values

@@ -42,7 +42,7 @@ public:
 	Parity: none
 	Flow control: none
 	*/
-	SERIALCOMMSDLL_API SerialCommPort(unsigned int portNum, BaudRate baud);
+	SERIALCOMMSDLL_API SerialCommPort(unsigned int portNum, BaudRate baud, DWORD readTimeoutms = 35, DWORD writeTimeoutms = 35);
 	SERIALCOMMSDLL_API ~SerialCommPort(void);
 	bool SERIALCOMMSDLL_API isValid(void);
 	unsigned int SERIALCOMMSDLL_API readBlock(char* pData, unsigned int Size);
