@@ -4,6 +4,9 @@
 // that uses this DLL. This way any other project whose source files include this file see 
 // SERIALCOMMSDLL_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
+#ifndef SERIALCOMMSDLL_H
+#define SERIALCOMMSDLL_H
+
 #ifdef SERIALCOMMSDLL_EXPORTS
 #define SERIALCOMMSDLL_API __declspec(dllexport)
 #else
@@ -60,3 +63,5 @@ private:
 extern SERIALCOMMSDLL_API int nSerialCommsDll;
 
 SERIALCOMMSDLL_API int fnSerialCommsDll(void);
+
+#endif //SERIALCOMMSDLL_H
